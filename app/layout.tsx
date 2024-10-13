@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import {Open_Sans} from 'next/font/google';
 import "./globals.css";
 
+import {
+  ClerkProvider
+} from '@clerk/nextjs'
+
 const sans=Open_Sans({subsets:['latin']})
 
 export const metadata: Metadata = {
@@ -15,12 +19,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <ClerkProvider>
+     <html lang="en">
       <body
-        className={`${sans.className}`}
-      >
+        className={`${sans.className}`}>
         {children}
       </body>
     </html>
+    </ClerkProvider>
   );
 }
